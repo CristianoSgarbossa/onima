@@ -1,0 +1,9 @@
+# Arquivos de design e trabalho (não fazem parte do site)
+SITE/
+FONTES E CORES/
+PROMPT-ONIMA.md
+.claude/
+
+# Sistema
+Thumbs.db
+.DS_Store
