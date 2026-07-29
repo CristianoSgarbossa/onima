@@ -359,7 +359,10 @@ h1, h2, h3, h4, p { margin: 0; }
    ============================================================ */
 .on-menu {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 100;
   background: var(--off-white);
   display: flex;
@@ -439,20 +442,31 @@ h1, h2, h3, h4, p { margin: 0; }
   overflow: hidden;
 }
 .on-menu__banner img {
+  display: block;
   width: 100%;
-  aspect-ratio: 223 / 100;
+  height: 160px; /* fallback p/ navegadores sem aspect-ratio */
   object-fit: cover;
+}
+@supports (aspect-ratio: 1 / 1) {
+  .on-menu__banner img {
+    height: auto;
+    aspect-ratio: 223 / 100;
+  }
 }
 .on-menu__banner-content {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 12px;
   padding: 20px 24px;
   color: #fff;
 }
+.on-menu__banner-content > * + * { margin-top: 12px; } /* fallback p/ gap em flex */
 .on-menu__banner-content .on-eyebrow { color: rgba(255, 255, 255, 0.9); }
 .on-menu__banner-title {
   font-size: 15px;
@@ -511,7 +525,10 @@ h1, h2, h3, h4, p { margin: 0; }
 .on-hero::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(90deg, rgba(249, 244, 243, 0.28) 0%, rgba(249, 244, 243, 0) 55%);
   pointer-events: none;
 }
@@ -647,7 +664,10 @@ h1, h2, h3, h4, p { margin: 0; }
 .on-strip::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(90deg, rgba(71, 69, 64, 0.38) 0%, rgba(71, 69, 64, 0) 55%);
   pointer-events: none;
 }
@@ -1335,7 +1355,10 @@ h1, h2, h3, h4, p { margin: 0; }
    ============================================================ */
 .on-overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 90;
   background: rgba(71, 69, 64, 0.45);
   opacity: 0;
@@ -1611,7 +1634,10 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 .on-account__banner-content {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1739,7 +1765,10 @@ h1, h2, h3, h4, p { margin: 0; }
 .on-journal-hero::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(180deg, rgba(71, 69, 64, 0) 45%, rgba(71, 69, 64, 0.3) 100%);
   pointer-events: none;
 }
