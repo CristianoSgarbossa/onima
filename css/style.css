@@ -289,6 +289,13 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 .on-logo:hover { color: var(--rosy); opacity: 0.85; }
 
+/* Logotipo em imagem (extraído do vetor oficial) */
+.on-logo img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
 .on-header__right {
   display: flex;
   align-items: center;
@@ -818,6 +825,13 @@ h1, h2, h3, h4, p { margin: 0; }
 .on-news__msg.is-error { color: #ffd9d9; }
 .on-news__mark { color: rgba(255, 255, 255, 0.85); }
 .on-news__mark .on-icon { width: 62px; height: 62px; }
+.on-news__mark img {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
+}
 
 /* ============================================================
    FOOTER
@@ -837,6 +851,12 @@ h1, h2, h3, h4, p { margin: 0; }
   color: var(--rosy);
   text-transform: lowercase;
   line-height: 1;
+}
+
+.on-footer__logo img {
+  height: 42px;
+  width: auto;
+  display: block;
 }
 
 .on-footer__tagline {
@@ -1159,6 +1179,7 @@ h1, h2, h3, h4, p { margin: 0; }
   .on-search .on-icon { width: 20px; height: 20px; color: var(--black); }
   .on-iconbtn--user { display: none; }
   .on-logo { font-size: 26px; }
+  .on-logo img { height: 22px; }
   .on-header__inner { height: 62px; }
   .on-header__icons { gap: 14px; }
 
@@ -1846,6 +1867,11 @@ h1, h2, h3, h4, p { margin: 0; }
   text-transform: lowercase;
   color: var(--rosy);
   line-height: 1;
+}
+.on-sobre__logo img {
+  height: 36px;
+  width: auto;
+  display: inline-block;
 }
 .on-sobre__signature {
   margin-top: 14px;
