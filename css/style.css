@@ -455,7 +455,7 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 .on-menu__banner-content .on-eyebrow { color: rgba(255, 255, 255, 0.9); }
 .on-menu__banner-title {
-  font-size: 19px;
+  font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.35;
