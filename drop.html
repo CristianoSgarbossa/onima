@@ -11,7 +11,18 @@
 <body>
 
   <!-- SECTION: announcement-bar -->
-  <div class="on-topbar">Frete grátis para compras acima de R$ 490 | Troca grátis*</div>
+  <div class="on-topbar" data-topbar>
+    <button class="on-topbar__arrow on-topbar__arrow--prev" type="button" aria-label="Mensagem anterior" data-topbar-prev>
+      <svg class="on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <div class="on-topbar__track">
+      <p class="on-topbar__item is-active">Frete grátis para compras acima de R$ 490 | Troca grátis*</p>
+      <p class="on-topbar__item" aria-hidden="true">Cupom de Primeira Compra: PRIMEIRACOMPRA</p>
+    </div>
+    <button class="on-topbar__arrow on-topbar__arrow--next" type="button" aria-label="Próxima mensagem" data-topbar-next>
+      <svg class="on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
 
   <!-- SECTION: header -->
   <header class="on-header">
@@ -143,7 +154,7 @@
         <div class="on-accordion__panel">
           <div>
             <ul class="on-menu__links">
-              <li><a href="#">Trocas e Devoluções</a></li>
+              <li><a href="trocas.html">Trocas e Devoluções</a></li>
               <li><a href="#">Perguntas Frequentes</a></li>
               <li><a href="#">Fale Conosco</a></li>
               <li><a href="#">Meus Pedidos</a></li>
@@ -390,7 +401,7 @@
           </button>
           <div class="on-accordion__panel">
             <ul class="on-footer__links">
-              <li><a href="#">Trocas e Devoluções</a></li>
+              <li><a href="trocas.html">Trocas e Devoluções</a></li>
               <li><a href="#">Perguntas Frequentes</a></li>
               <li><a href="#">Fale Conosco</a></li>
               <li><a href="#">Meus Pedidos</a></li>
@@ -550,7 +561,7 @@
         <div class="on-accordion__panel">
           <div>
             <ul class="on-menu__links">
-              <li><a href="#">Trocas e Devoluções</a></li>
+              <li><a href="trocas.html">Trocas e Devoluções</a></li>
               <li><a href="#">Perguntas Frequentes</a></li>
               <li><a href="#">Fale Conosco</a></li>
               <li><a href="#">Meus Pedidos</a></li>

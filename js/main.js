@@ -17,7 +17,70 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---------- 2. Trava de scroll compartilhada ---------- */
+  /* ---------- 2. Barra de anúncio em slider ---------- */
+  var TOPBAR_DELAY = 5000;
+
+  document.querySelectorAll('[data-topbar]').forEach(function (bar) {
+    var items = Array.prototype.slice.call(bar.querySelectorAll('.on-topbar__item'));
+    if (items.length < 2) return;
+
+    var index = 0;
+    var timer = null;
+
+    function show(next, reverse) {
+      var previous = index;
+      index = (next + items.length) % items.length;
+      if (index === previous) return;
+
+      bar.classList.add('is-ready');
+      bar.classList.toggle('is-reverse', Boolean(reverse));
+      items.forEach(function (el, i) {
+        el.classList.remove('is-leaving');
+        if (i === previous) el.classList.add('is-leaving');
+        el.classList.toggle('is-active', i === index);
+        el.setAttribute('aria-hidden', String(i !== index));
+      });
+    }
+
+    // A mensagem que saiu volta a ficar oculta quando o deslize termina
+    items.forEach(function (el) {
+      el.addEventListener('animationend', function () {
+        el.classList.remove('is-leaving');
+      });
+    });
+
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function start() {
+      stop();
+      timer = setInterval(function () { show(index + 1); }, TOPBAR_DELAY);
+    }
+
+    bar.querySelectorAll('[data-topbar-prev]').forEach(function (btn) {
+      btn.addEventListener('click', function () { show(index - 1, true); start(); });
+    });
+    bar.querySelectorAll('[data-topbar-next]').forEach(function (btn) {
+      btn.addEventListener('click', function () { show(index + 1); start(); });
+    });
+
+    // Pausa o autoplay com o mouse sobre a barra e ao sair de foco da aba
+    bar.addEventListener('mouseenter', stop);
+    bar.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    show(0);
+    start();
+  });
+
+  /* ---------- 3. Trava de scroll compartilhada ---------- */
   var menu = document.querySelector('.on-menu');
   var overlay = document.querySelector('.on-overlay');
   var drawers = document.querySelectorAll('.on-drawer');
@@ -37,7 +100,7 @@
     if (overlay) overlay.classList.toggle('is-open', drawerOpen);
   }
 
-  /* ---------- 3. Menu mobile (overlay full-screen) ---------- */
+  /* ---------- 4. Menu mobile (overlay full-screen) ---------- */
   function setMenu(open) {
     if (!menu) return;
     menu.classList.toggle('is-open', open);
@@ -60,7 +123,7 @@
     });
   }
 
-  /* ---------- 4. Drawers laterais (Sacola e Conta) ---------- */
+  /* ---------- 5. Drawers laterais (Sacola e Conta) ---------- */
   function closeDrawers() {
     drawers.forEach(function (d) {
       d.classList.remove('is-open');
@@ -103,7 +166,7 @@
     }
   });
 
-  /* ---------- 5. Sacola (localStorage estruturado) ---------- */
+  /* ---------- 6. Sacola (localStorage estruturado) ---------- */
   var CART_KEY = 'onimaCart';
   localStorage.removeItem('onimaCartCount'); // chave antiga (v1)
 
@@ -241,7 +304,7 @@
   renderCartCount();
   renderCartDrawer();
 
-  /* ---------- 6. Accordions: apenas um aberto por grupo ---------- */
+  /* ---------- 7. Accordions: apenas um aberto por grupo ---------- */
   document.querySelectorAll('[data-accordion-group]').forEach(function (group) {
     var items = Array.prototype.slice.call(group.querySelectorAll('.on-accordion'));
     items.forEach(function (item) {
@@ -263,7 +326,7 @@
     });
   });
 
-  /* ---------- 7. Seletores de cor e tamanho (estado ativo) ---------- */
+  /* ---------- 8. Seletores de cor e tamanho (estado ativo) ---------- */
   document.querySelectorAll('[data-select-group]').forEach(function (group) {
     group.addEventListener('click', function (e) {
       var btn = e.target.closest('button');
@@ -277,7 +340,7 @@
     });
   });
 
-  /* ---------- 8. Carrosséis (setas + arraste com mouse) ---------- */
+  /* ---------- 9. Carrosséis (setas + arraste com mouse) ---------- */
   document.querySelectorAll('.on-carousel').forEach(function (carousel) {
     var track = carousel.querySelector('.on-carousel__track');
     if (!track) return;
@@ -334,7 +397,7 @@
     }, true);
   });
 
-  /* ---------- 9. Newsletter: validação simples de e-mail ---------- */
+  /* ---------- 10. Newsletter: validação simples de e-mail ---------- */
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   document.querySelectorAll('.on-news__form').forEach(function (form) {
@@ -356,7 +419,7 @@
     });
   });
 
-  /* ---------- 10. Máscara de CPF ---------- */
+  /* ---------- 11. Máscara de CPF ---------- */
   document.querySelectorAll('[data-mask="cpf"]').forEach(function (input) {
     input.addEventListener('input', function () {
       var digits = input.value.replace(/\D/g, '').slice(0, 11);
@@ -372,7 +435,7 @@
     });
   });
 
-  /* ---------- 11. Formulários de login e cadastro ---------- */
+  /* ---------- 12. Formulários de login e cadastro ---------- */
   function setFieldError(form, selector, message) {
     var el = form.querySelector(selector);
     if (!el) return;
@@ -413,7 +476,7 @@
     });
   });
 
-  /* ---------- 12. Animação de entrada das seções ao rolar ---------- */
+  /* ---------- 13. Animação de entrada das seções ao rolar ---------- */
   var reveals = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && reveals.length) {
     var io = new IntersectionObserver(function (entries) {

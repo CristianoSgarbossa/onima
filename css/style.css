@@ -214,18 +214,174 @@ h1, h2, h3, h4, p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .on-topbar__item.is-active,
+  .on-topbar__item.is-leaving { animation: none; }
+  .on-topbar__item.is-leaving { visibility: hidden; }
 }
 
 /* ============================================================
    HEADER
    ============================================================ */
 .on-topbar {
+  position: relative;
   background: var(--rosy);
   color: #fff;
   text-align: center;
   font-size: 11px;
   letter-spacing: 0.08em;
-  padding: 8px 16px;
+  padding: 8px 48px;
+}
+
+/* Barra de anúncio em slider: mensagens empilhadas na mesma célula do grid,
+   assim a altura da barra é a da maior mensagem e não muda ao trocar. */
+.on-topbar__track { display: grid; }
+.on-topbar__item {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.on-topbar__item.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* A mensagem que entra desliza de um lado; a que sai desliza para o outro.
+   `is-ready` só entra na primeira troca, para a barra não animar ao carregar
+   a página; `is-reverse` inverte o sentido quando se usa a seta anterior. */
+.on-topbar.is-ready .on-topbar__item.is-active {
+  animation: on-topbar-in 0.45s ease both;
+}
+.on-topbar.is-ready .on-topbar__item.is-leaving {
+  visibility: visible;
+  animation: on-topbar-out 0.45s ease both;
+}
+.on-topbar.is-ready.is-reverse .on-topbar__item.is-active { animation-name: on-topbar-in-rev; }
+.on-topbar.is-ready.is-reverse .on-topbar__item.is-leaving { animation-name: on-topbar-out-rev; }
+
+@keyframes on-topbar-in {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes on-topbar-out {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-30px); }
+}
+@keyframes on-topbar-in-rev {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes on-topbar-out-rev {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(30px); }
+}
+
+.on-topbar__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color var(--ease);
+}
+.on-topbar__arrow:hover { color: #fff; }
+.on-topbar__arrow--prev { left: 8px; }
+.on-topbar__arrow--next { right: 8px; }
+.on-topbar__arrow .on-icon { width: 13px; height: 13px; }
+
+/* ============================================================
+   PÁGINA DE CONTEÚDO (Trocas e Devoluções)
+   ============================================================ */
+.on-legal { padding-top: 56px; }
+
+.on-legal__head { text-align: center; }
+
+.on-legal__title {
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rosy);
+}
+
+.on-legal__breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--onima);
+}
+.on-legal__breadcrumb a:hover { color: var(--rosy); }
+
+.on-legal__body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-top: 56px;
+  border-top: 1px solid rgba(164, 125, 128, 0.22);
+  margin-top: 46px;
+}
+.on-legal__body p {
+  font-size: 14px;
+  line-height: 1.95;
+  margin-bottom: 22px;
+}
+.on-legal__body strong { font-weight: 600; }
+
+.on-legal__intro { color: var(--black); }
+
+.on-legal__h2 {
+  margin: 52px 0 18px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rosy);
+}
+
+.on-legal__body ol,
+.on-legal__body ul {
+  margin: 0 0 22px;
+  padding-left: 22px;
+}
+.on-legal__body li {
+  font-size: 14px;
+  line-height: 1.95;
+  margin-bottom: 12px;
+  padding-left: 6px;
+}
+.on-legal__body li::marker { color: var(--onima); }
+
+.on-legal__link {
+  color: var(--rosy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.on-legal__link:hover { color: var(--black); }
+
+.on-legal__note {
+  border-left: 1px solid var(--onima);
+  padding-left: 20px;
+  font-size: 13.5px !important;
+  color: var(--black);
+}
+
+.on-legal__close {
+  margin-top: 52px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(164, 125, 128, 0.22);
+  font-size: 13.5px !important;
+  color: var(--rosy);
 }
 
 .on-header {
@@ -1943,4 +2099,13 @@ h1, h2, h3, h4, p { margin: 0; }
 
   .on-sobre__imgs { grid-template-columns: 1fr; gap: 20px; margin: 48px auto; }
   .on-sobre__signature { font-size: 25px; }
+
+  .on-topbar { padding-left: 34px; padding-right: 34px; }
+  .on-topbar__arrow--prev { left: 2px; }
+  .on-topbar__arrow--next { right: 2px; }
+
+  .on-legal { padding-top: 36px; }
+  .on-legal__title { font-size: 19px; }
+  .on-legal__body { padding-top: 40px; margin-top: 34px; }
+  .on-legal__h2 { margin-top: 42px; font-size: 14px; }
 }

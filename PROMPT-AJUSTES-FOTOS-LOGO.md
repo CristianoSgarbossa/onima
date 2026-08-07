@@ -57,7 +57,66 @@ Em **todas as páginas**, substituir a tagline do footer (abaixo do logo grande)
 
 Manter o mesmo estilo (caixa alta, espaçamento de letras, cor e quebras de linha equilibradas — no mobile pode quebrar em 2 linhas: "VISTA A VIDA QUE VOCÊ / ESCOLHE VIVER.").
 
+## 5. Barra de anúncio em slider (cupom + frete grátis)
+
+Referência: `Fotos novas/WhatsApp Image 2026-07-29 at 10.42.26.jpeg` (site de referência com barra preta e setas — **usar apenas como referência de funcionamento, NÃO copiar o visual**).
+
+Transformar a barra de anúncio do topo (hoje fixa com "Frete grátis para compras acima de R$ 490 | Troca grátis*") em um **slider rotativo** com 2 mensagens, em todas as páginas:
+
+1. `Frete grátis para compras acima de R$ 490 | Troca grátis*`
+2. `Cupom de Primeira Compra: PRIMEIRACOMPRA`
+
+Regras de estilo — manter 100% a identidade ONIMA:
+- Fundo continua Rosy `#A47D80`, texto off-white, fonte JUST Sans no mesmo tamanho atual (nada de preto/estilo da referência).
+- Setas `‹` `›` discretas nas laterais (off-white, finas) para trocar a mensagem manualmente.
+- Autoplay: troca sozinha a cada ~5s, com transição suave (fade ou slide horizontal); pausar autoplay ao passar o mouse.
+- JS vanilla no `main.js` (módulo próprio), sem bibliotecas. Altura da barra não pode mudar entre mensagens.
+
+## 6. Nova página: Trocas e Devoluções (`trocas.html`)
+
+Referência de conteúdo e estrutura: `Fotos novas/WhatsApp Image 2026-07-29 at 10.45.03.jpeg`, `...10.45.04.jpeg` e `...10.45.04 (1).jpeg` (página de outra marca — **aproveitar a estrutura e as regras, mas reescrever para a ONIMA e aplicar totalmente a paleta e as fontes da ONIMA**, nunca o visual preto/branco da referência).
+
+Estrutura da página (header, newsletter e footer padrão ONIMA; conteúdo em container de leitura ~720px):
+- Título da página: `TROCAS E DEVOLUÇÕES` (caixa alta, Rosy, espaçado — padrão dos títulos de seção ONIMA) + breadcrumb discreto `Início / Trocas e Devoluções`.
+- Intro: "Na ONIMA, queremos que cada peça vista exatamente como deveria. Se algo não ficou do jeito que você esperava, estamos aqui para resolver — com transparência e sem burocracia."
+- Seção **Prazo**: "Você tem **7 dias corridos**, a contar da data de recebimento do pedido, para solicitar troca ou devolução."
+- Seção **Como funciona a troca** (lista numerada):
+  1. Solicite a troca dentro do prazo informado acima.
+  2. No primeiro envio de troca de cada pedido, o frete de retorno é por nossa conta — te enviamos o código de postagem sem custo.
+  3. Assim que a peça chega ao nosso centro de distribuição, nosso time avalia as condições do produto (etiqueta, embalagem e integridade da peça) e confirma se ela está apta para troca.
+  4. Sendo aprovada, você recebe um **vale-crédito em até 2 dias úteis**, para usar como quiser em nosso site.
+  - "O vale-crédito gerado tem validade de **120 dias** a partir da data de emissão."
+  - "**Importante:** caso você deseje trocar novamente uma peça do mesmo pedido, o frete dessa nova postagem passa a ser por sua conta."
+- Seção **Como funciona a devolução** (lista numerada):
+  1. Solicite a devolução dentro do prazo de 7 dias corridos.
+  2. Após a avaliação da peça pelo nosso time, o estorno é feito via **Pix, em até 15 dias corridos**.
+  - "**Compras com brinde:** se a sua compra atingiu o valor mínimo que dava direito a um brinde e a devolução da(s) peça(s) fizer com que o pedido deixe de ser elegível para esse benefício, será necessário devolver o brinde junto com a(s) peça(s) para que a devolução seja efetuada. Caso o brinde não seja devolvido, o estorno será realizado descontando o valor correspondente ao brinde."
+- Seção **O que não pode ser trocado ou devolvido**: "Peças adquiridas em **promoção** não são elegíveis para troca ou devolução, exceto em casos de defeito de fabricação — nesse caso, fale com a gente e resolvemos juntas."
+- Seção **Condições para aprovação** — "Para que a troca ou devolução seja aprovada, a peça precisa estar:" (bullets):
+  - Sem uso e sem lavagem;
+  - Sem marcas de desodorante, maquiagem, perfume ou qualquer outro produto;
+  - Com a etiqueta original afixada;
+  - Na embalagem em que foi recebida (ou similar).
+- Seção **Como fazer?** (lista numerada — usar link placeholder `#` por enquanto, o portal de trocas será definido depois):
+  1. Clique no link do nosso portal de trocas.
+  2. Para continuar, você vai precisar inserir o número do seu pedido e o e-mail cadastrado na compra.
+  3. Siga as orientações do site. O código de postagem é gerado automaticamente.
+- Seção **Não esqueça das regras** (lista numerada):
+  1. O produto deve ser **empacotado de forma reforçada**. Caso não tenha a embalagem original, utilize qualquer outro pacote de papel pardo — sem propagandas.
+  2. A peça deve estar em **perfeito estado e/ou sem sinais de uso**, sem avarias ou danos.
+  3. A peça deve estar com **todas as etiquetas originais**.
+- Seção **Sobre o envio** (lista numerada):
+  1. A postagem deve acontecer em até **7 dias corridos** (para que o código gerado no site não expire). Ele é enviado direto para o e-mail associado à compra.
+  2. O prazo de devolução é determinado pelos Correios. Você recebe o código de rastreio no momento da postagem e pode acompanhar o envio pelo Rastreamento dos Correios.
+- Fecho: "Lembre-se sempre de conferir suas mensagens (inclusive spam e lixo eletrônico) ;)"
+
+Estilo da página — paleta e fontes ONIMA:
+- Fundo Off White `#F9F4F3`, títulos de seção em JUST Sans SemiBold caixa alta cor Rosy `#A47D80`, corpo em JUST Sans Regular cor Black `#474540`, destaques em SemiBold.
+- Listas com espaçamento confortável; nada de preto puro, nada de negrito pesado estilo referência.
+- Linkar esta página no footer (`Trocas e Devoluções` em ATENDIMENTO) e nos accordions de atendimento dos menus/drawers, em todas as páginas.
+
 ## Restrições finais
 
-- Nenhuma outra alteração: não tocar em textos (além da tagline do item 4), estrutura HTML (além da troca logo texto→imagem), variáveis de cor, JS ou responsividade.
-- Conferir o resultado nas três páginas existentes (index, drop, produto) em desktop e mobile após a troca.
+- Nenhuma outra alteração além dos itens 1–6: não tocar nos demais textos, estrutura, variáveis de cor ou responsividade.
+- As imagens em `Fotos novas/` são referência de conteúdo/comportamento de outra marca — nunca copiar tipografia, cores ou logo delas; tudo entra com a identidade ONIMA.
+- Conferir o resultado em todas as páginas em desktop e mobile após as alterações.
